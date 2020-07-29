@@ -1,0 +1,31 @@
+﻿<Page x:Class="drontaxi.View.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:drontaxi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="LoginPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="pack://application:,,,/Images/flying-taxi.jpg" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60px" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Images/Logo Dron Taxi-2.png" Margin="5" />
+            <TextBlock Text="DRON TAXI" Foreground="White" FontSize="25" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="АВТОРИЗАЦИЯ" Foreground="White" />
+            <TextBlock Text="Логин" Foreground="LightGray" />
+
+        </StackPanel>
+    </Grid>
+</Page>
