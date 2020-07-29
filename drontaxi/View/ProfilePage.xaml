@@ -1,0 +1,31 @@
+﻿<Page Background="#661565" x:Class="drontaxi.View.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:drontaxi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="ProfilePage">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Мой профиль" Foreground="White" FontSize="20" FontWeight="Bold" Margin="20px 30px 0 20px" />
+            <Grid Background="#821d80" Margin="20px 0 20px 0">
+                <TabControl Margin="0 -1 0 0" BorderBrush="#5d8abf" x:Name="actions" Height="500px" Background="#821d80" BorderThickness="0">
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Width="200" Padding="55 5 0 7" Foreground="White" FontWeight="Bold" Text="Личные данные"/>
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Width="200" Padding="85 5 0 7" Foreground="White" FontWeight="Bold" Text="Роли"/>
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
+</Page>

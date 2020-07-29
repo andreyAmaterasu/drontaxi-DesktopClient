@@ -5,12 +5,56 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:drontaxi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1200"
       Title="MainPage">
 
     
     <Grid>
-        <TextBlock>cdbscdsudis</TextBlock>
-        <Frame Grid.Row="1" Content="{Binding CurrentPage}" x:Name="ContainerForPages" x:FieldModifier="public" NavigationUIVisibility = "Hidden" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300px" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60px" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Background="#821d80" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Images/Logo Dron Taxi-2.png" Margin="5" />
+                <TextBlock Text="DRON TAXI" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="#821d80">
+            <Grid Height="40px" Margin="20px 50px 20px 0">
+                <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
+                    <DockPanel LastChildFill="True" Width="230px">
+                        <Image Source="pack://application:,,,/Images/profile.png" Height="25"/>
+                        <TextBlock Text="Профиль" HorizontalAlignment="Left" Margin="39 0 0 0" VerticalAlignment="Center"
+                                   Foreground="White" FontSize="13" />
+                    </DockPanel>
+                </Button>
+            </Grid>
+
+            <Grid Height="40px" Margin="20px 10px 20px 0">
+                <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
+                    <DockPanel LastChildFill="True" Width="230px">
+                        <Image Source="pack://application:,,,/Images/manag-user.png" Height="25"/>
+                        <TextBlock Text="Упр. пользователями" HorizontalAlignment="Left" Margin="30 0 0 0" VerticalAlignment="Center"
+                                   Foreground="White" FontSize="13" />
+                    </DockPanel>
+                </Button>
+            </Grid>
+
+            <Grid Height="40px" Margin="20px 10px 20px 0">
+                <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
+                    <DockPanel LastChildFill="True" Width="230px">
+                        <Image Source="pack://application:,,,/Images/manag-role.png" Height="25"/>
+                        <TextBlock Text="Упр. ролями" HorizontalAlignment="Left" Margin="30 0 0 0" VerticalAlignment="Center"
+                                   Foreground="White" FontSize="13" />
+                    </DockPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+        <Frame Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPage}" x:Name="ContainerForPages" x:FieldModifier="public" NavigationUIVisibility = "Hidden" />
     </Grid>
 </Page>

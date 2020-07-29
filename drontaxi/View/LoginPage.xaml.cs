@@ -53,8 +53,8 @@ namespace drontaxi.View
                       Useraccount useraccount = (Useraccount)Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login);
                       if (useraccount != null && useraccount.Email == Login && useraccount.Password == Password) {
                           MainPage mainPage = new MainPage(Login);
-                          //TasksPage tasksPage = new View.TasksPage(Login);
-                          //MainPage.CurrentPage.Content = tasksPage;
+                          ProfilePage profilePage = new View.ProfilePage(Login);
+                          MainPage.CurrentPage.Content = profilePage;
 
                           NavigationService.Navigate(mainPage);
                       }

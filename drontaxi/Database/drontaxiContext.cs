@@ -36,10 +36,9 @@ namespace drontaxi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //var jsonString = File.ReadAllText("databasedata.json");
-                //DatabaseConnect databaseConnect = JsonSerializer.Deserialize<DatabaseConnect>(jsonString);
-                //optionsBuilder.UseNpgsql($"Host={databaseConnect.Host};Port={databaseConnect.Port};Database={databaseConnect.Database};Username={databaseConnect.Username};Password={databaseConnect.Password}");
-                optionsBuilder.UseNpgsql($"Host=10.0.0.3;Port=5432;Database=drontaxi;Username=andrey;Password=1469");
+                var jsonString = File.ReadAllText("databasedata.json");
+                DatabaseConnect databaseConnect = JsonSerializer.Deserialize<DatabaseConnect>(jsonString);
+                optionsBuilder.UseNpgsql($"Host={databaseConnect.Host};Port={databaseConnect.Port};Database={databaseConnect.Database};Username={databaseConnect.Username};Password={databaseConnect.Password}");
             }
         }
 
@@ -253,7 +252,7 @@ namespace drontaxi.Models
 
             modelBuilder.Entity<RoleForUser>(entity =>
             {
-                entity.HasKey(e => e.SystemName)
+                entity.HasKey(e => new { e.SystemName, e.Email })
                     .HasName("role_for_user_pkey");
 
                 entity.ToTable("role_for_user");
@@ -282,7 +281,6 @@ namespace drontaxi.Models
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.RoleForUser)
                     .HasForeignKey(d => d.Email)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("role_for_user_email_fkey");
             });
 
@@ -322,12 +320,6 @@ namespace drontaxi.Models
                 entity.Property(e => e.Role)
                     .HasColumnName("role")
                     .HasMaxLength(50);
-
-                entity.HasOne(d => d.RoleNavigation)
-                    .WithMany(p => p.SystemFunction)
-                    .HasForeignKey(d => d.Role)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("system_function_role_fkey");
             });
 
             modelBuilder.Entity<Transport>(entity =>

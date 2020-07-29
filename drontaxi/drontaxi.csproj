@@ -11,6 +11,9 @@
     <None Remove="Fonts\Roboto-Medium.ttf" />
     <None Remove="Images\flying-taxi.jpg" />
     <None Remove="Images\Logo Dron Taxi-2.png" />
+    <None Remove="Images\manag-role.png" />
+    <None Remove="Images\manag-user.png" />
+    <None Remove="Images\profile.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +27,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Logo Dron Taxi-2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\manag-role.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\manag-user.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\profile.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
