@@ -26,12 +26,12 @@
             <TextBlock Text="АВТОРИЗАЦИЯ" FontWeight="Bold" Foreground="White" Margin="0 10 0 10" />
             <TextBlock Text="Логин" FontWeight="Bold" Foreground="LightGray" Margin="0 10 0 5" />
             <Border BorderThickness="1.5" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Margin="0 0 0 10">
-                <TextBox x:Name="login" VerticalContentAlignment="Center" />
+                <TextBox x:Name="inputLogin" VerticalContentAlignment="Center" Padding="10 0 0 0" Text="{Binding Login}" />
             </Border>
             
             <TextBlock Text="Пароль" FontWeight="Bold" Foreground="LightGray" Margin="0 0 0 5" />
             <Border BorderThickness="1.5" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Margin="0 0 0 20">
-                <PasswordBox x:Name="password" VerticalContentAlignment="Center" />
+                <PasswordBox x:Name="inputPassword" Padding="10 0 0 0" VerticalContentAlignment="Center" />
             </Border>
             
 
@@ -43,9 +43,10 @@
                 </Grid.ColumnDefinitions>
                 <CheckBox Grid.Column="0" Style="{StaticResource CheckBox}" Height="20px" Width="20px" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Grid.Column="1" Text="Запомнить" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
-                <Button Grid.Column="2" Style="{StaticResource InputTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Content="Войти" Width="150px" Height="35px" />
+                <Button Grid.Column="2" Style="{StaticResource InputTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Content="Войти" Width="150px" Height="35px" Command="{Binding EntryCommand}" />
             </Grid>
-            <Button Grid.Column="2" Style="{StaticResource RegistrationTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Black" Content="Регистрация" Width="330px" Height="35px" />
+            <Button Grid.Column="2" Style="{StaticResource RegistrationTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Black" 
+                    Content="Регистрация" Width="330px" Height="35px" />
         </StackPanel>
     </Grid>
 </Page>
