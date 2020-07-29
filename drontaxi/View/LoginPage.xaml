@@ -19,13 +19,33 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Image Source="pack://application:,,,/Images/Logo Dron Taxi-2.png" Margin="5" />
-            <TextBlock Text="DRON TAXI" Foreground="White" FontSize="25" VerticalAlignment="Center" />
+            <TextBlock Text="DRON TAXI"  FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
-            <TextBlock Text="АВТОРИЗАЦИЯ" Foreground="White" />
-            <TextBlock Text="Логин" Foreground="LightGray" />
+        <StackPanel Grid.Row="1" Margin="60px 0 0 150px" Width="330px" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text="АВТОРИЗАЦИЯ" FontWeight="Bold" Foreground="White" Margin="0 10 0 10" />
+            <TextBlock Text="Логин" FontWeight="Bold" Foreground="LightGray" Margin="0 10 0 5" />
+            <Border BorderThickness="1.5" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Margin="0 0 0 10">
+                <TextBox x:Name="login" VerticalContentAlignment="Center" />
+            </Border>
+            
+            <TextBlock Text="Пароль" FontWeight="Bold" Foreground="LightGray" Margin="0 0 0 5" />
+            <Border BorderThickness="1.5" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Margin="0 0 0 20">
+                <PasswordBox x:Name="password" VerticalContentAlignment="Center" />
+            </Border>
+            
 
+            <Grid Margin="0 0 0 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30px" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Style="{StaticResource CheckBox}" Height="20px" Width="20px" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="Запомнить" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
+                <Button Grid.Column="2" Style="{StaticResource InputTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Content="Войти" Width="150px" Height="35px" />
+            </Grid>
+            <Button Grid.Column="2" Style="{StaticResource RegistrationTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Black" Content="Регистрация" Width="330px" Height="35px" />
         </StackPanel>
     </Grid>
 </Page>
