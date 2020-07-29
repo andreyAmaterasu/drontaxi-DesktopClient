@@ -15,5 +15,33 @@ namespace drontaxi.Database
             }
             return null;
         }
+
+        public static List<RoleForUser> GetRolesForUserWithLogin(string login) {
+            using (drontaxiContext db = new drontaxiContext()) {
+                return db.RoleForUser.Where(r => r.Email == login).ToList();
+            }
+        }
+
+        public static List<SystemFunction> GetFunctionsForRole(string systemName) {
+            using (drontaxiContext db = new drontaxiContext()) {
+                return db.SystemFunction.Where(s => s.Role == systemName).ToList();
+            }
+        }
+
+        public static void RemoveRole(string systemName) {
+            using (drontaxiContext db = new drontaxiContext()) {
+                RoleForUser roleForUser = db.RoleForUser.Where(r => r.SystemName == systemName).FirstOrDefault();
+                db.RoleForUser.Remove(roleForUser);
+                db.SaveChanges();
+            }
+        }
+
+        public static void RemoveFunction(string systemName) {
+            using (drontaxiContext db = new drontaxiContext()) {
+                SystemFunction systemFunction = db.SystemFunction.Where(s => s.SystemName == systemName).FirstOrDefault();
+                db.SystemFunction.Remove(systemFunction);
+                db.SaveChanges();
+            }
+        }
     }
 }

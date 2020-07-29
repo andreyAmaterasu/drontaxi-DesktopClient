@@ -11,6 +11,7 @@ namespace drontaxi.ViewModels
         }
 
         private string login;
+        private bool showFunction;
 
         //private Page currentPage;
         public string Login {
@@ -21,5 +22,12 @@ namespace drontaxi.ViewModels
             }
         }
 
+        public bool ShowFunction {
+            get { return showFunction; }
+            set {
+                showFunction = value;
+                OnPropertyChanged("ShowFunction");
+            }
+        }
     }
 }

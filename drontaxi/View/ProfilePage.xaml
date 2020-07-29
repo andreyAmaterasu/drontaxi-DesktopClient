@@ -17,15 +17,153 @@
                         <TabItem.Header>
                             <TextBlock Width="200" Padding="55 5 0 7" Foreground="White" FontWeight="Bold" Text="Личные данные"/>
                         </TabItem.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200px" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1" Margin="20 50 20 0">
+                                <TextBlock Text="Фамилия" Foreground="LightGray" FontWeight="Bold" Margin="0 0 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Useraccount.Lastname}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                                <TextBlock Text="Имя" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                    <TextBlock Text="{Binding Useraccount.Firstname}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                                <TextBlock Text="Отчество" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                    <TextBlock Text="{Binding Useraccount.Patronymic}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0 0 20 0">
+                                        <TextBlock Text="Дата рождения" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding Useraccount.DateOfBirth, StringFormat=dd.MM.yyyy}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="20 0 0 0">
+                                        <TextBlock Text="Пол" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding Useraccount.Gender}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Margin="20 50 20 0">
+                                <TextBlock Text="Email" Foreground="LightGray" FontWeight="Bold" Margin="0 0 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                    <TextBlock Text="{Binding Useraccount.Email}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                                <TextBlock Text="Телефон" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                    <TextBlock Text="{Binding Useraccount.PhoneNumber}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                                <TextBlock Text="Пароль" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                    <TextBlock Text="{Binding Useraccount.Password}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                </Border>
+                            </StackPanel>
+                        </Grid>
                     </TabItem>
                     <TabItem>
                         <TabItem.Header>
                             <TextBlock Width="200" Padding="85 5 0 7" Foreground="White" FontWeight="Bold" Text="Роли"/>
                         </TabItem.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3px" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Доступные роли" FontSize="20" Margin="40 20 0 0" Foreground="White"  />
+                                <ListBox x:Name="Items" SelectedItem="{Binding SelectedRole}" BorderThickness="1" Grid.Column="0" Background="#9a4594" BorderBrush="White" 
+                                         ItemsSource="{Binding Path=RoleForUser}" Margin="40 20 40 0" HorizontalContentAlignment="Stretch">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="35px" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding RoleName}" Padding="30 10 0 10" Foreground="White" />
+                                                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Height="15px" Width="15px" HorizontalAlignment="Right" Margin="0 0 20 0"
+                                                        Command="{Binding ElementName=Items, Path=DataContext.RemoveRole}" CommandParameter="{Binding SystemName}">
+                                                    <Image Source="pack://application:,,,/Images/delete.png" Height="12px" />
+                                                </Button>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+
+                            <Grid Grid.Column="1" Background="#9a4594" Margin="0 30 0 30" />
+
+                            <StackPanel Grid.Column="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Роль: " FontSize="20" Margin="40 20 0 0" Foreground="White" />
+                                    <TextBlock Text="{Binding SelectedRole.RoleName}" FontSize="20" Margin="0 20 0 0" Foreground="White" />
+                                </StackPanel>
+                                <Grid Margin="40 0 40 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0 0 20 0">
+                                        <TextBlock Text="Системное имя" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding SelectedRole.SystemName}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                        <TextBlock Text="Дата начала" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding SelectedRole.StartDate, StringFormat=dd.MM.yyyy}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="20 0 0 0">
+                                        <TextBlock Text="Наименование" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding SelectedRole.RoleName}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                        <TextBlock Text="Дата окончания" Foreground="LightGray" FontWeight="Bold" Margin="0 10 0 15" />
+                                        <Border BorderThickness="0 0 0 2" BorderBrush="#4aa8df">
+                                            <TextBlock Text="{Binding SelectedRole.ExpirationDate, StringFormat=dd.MM.yyyy}" Padding="20 0 0 0" Height="25" Foreground="White" FontSize="14" />
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+
+                                <TextBlock Text="Доступные функции" FontSize="20" Margin="40 20 0 0" Foreground="White"  />
+                                <ListBox x:Name="ItemsFunction" SelectedItem="{Binding SelectedFunctions}" BorderThickness="1" Grid.Column="0" Background="#9a4594" BorderBrush="White" 
+                                         ItemsSource="{Binding Path=FunctionsForRole}" Margin="40 20 40 0" HorizontalContentAlignment="Stretch">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="35px" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding FunctionName}" Padding="30 10 0 10" Foreground="White" />
+                                                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Height="15px" Width="15px" HorizontalAlignment="Right" Margin="0 0 20 0"
+                                                        Command="{Binding ElementName=ItemsFunction, Path=DataContext.RemoveFunction}" CommandParameter="{Binding SystemName}">
+                                                    <Image Source="pack://application:,,,/Images/delete.png" Height="12px" />
+                                                </Button>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>
-            
         </StackPanel>
     </Grid>
 </Page>

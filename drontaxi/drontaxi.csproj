@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Fonts\Roboto-Bold.ttf" />
     <None Remove="Fonts\Roboto-Medium.ttf" />
+    <None Remove="Images\delete.png" />
     <None Remove="Images\flying-taxi.jpg" />
     <None Remove="Images\Logo Dron Taxi-2.png" />
     <None Remove="Images\manag-role.png" />
@@ -21,6 +22,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\delete.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\flying-taxi.jpg">
