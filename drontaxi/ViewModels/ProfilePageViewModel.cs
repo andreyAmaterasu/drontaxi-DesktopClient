@@ -76,6 +76,7 @@ namespace drontaxi.ViewModels
                         Database.DatabaseManager.RemoveFunction(systemName);
                         FunctionsForRole = Database.DatabaseManager.GetFunctionsForRole(SelectedRole.SystemName);
                     }));
+
             }
         }
     }
