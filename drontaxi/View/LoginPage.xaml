@@ -52,7 +52,11 @@
 
         <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowError, 
                     Converter={StaticResource booleanToVisibilityConverter}}">
-            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Не удалось подключиться к базе данных" />
+            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Не удалось установить соединение с базой данных" />
+        </Border>
+        <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowMassage, 
+                    Converter={StaticResource booleanToVisibilityConverter}}">
+            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Неверный логин или пароль" />
         </Border>
     </Grid>
 </Page>

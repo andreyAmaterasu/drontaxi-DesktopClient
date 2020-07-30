@@ -39,6 +39,16 @@ namespace drontaxi.View
             }
         }
 
+        private bool showMassage;
+
+        public bool ShowMassage {
+            get { return showMassage; }
+            set {
+                showMassage = value;
+                OnPropertyChanged("ShowMassage");
+            }
+        }
+
         public string Login {
             get { return login; }
             set {
@@ -64,19 +74,23 @@ namespace drontaxi.View
                       using (drontaxiContext db = new drontaxiContext()) {
                           try {
                               useraccount = db.Useraccount.Where(m => m.Email == login).FirstOrDefault();
+                              if (useraccount != null && useraccount.Email == Login && useraccount.Password == Password) {
+                                  MainPage mainPage = new MainPage(Login);
+                                  ProfilePage profilePage = new View.ProfilePage(Login);
+                                  MainPage.CurrentPage.Content = profilePage;
+
+                                  NavigationService.Navigate(mainPage);
+                              }
+                              else {
+                                  ShowMassage = true;
+                              }
                           }
                           catch (InvalidOperationException ex) {
                               ShowError = true;
                           }
                       }
                       //Useraccount useraccount = (Useraccount)Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login);
-                      if (useraccount != null && useraccount.Email == Login && useraccount.Password == Password) {
-                          MainPage mainPage = new MainPage(Login);
-                          ProfilePage profilePage = new View.ProfilePage(Login);
-                          MainPage.CurrentPage.Content = profilePage;
-
-                          NavigationService.Navigate(mainPage);
-                      }
+                      
                   }));
             }
         }
