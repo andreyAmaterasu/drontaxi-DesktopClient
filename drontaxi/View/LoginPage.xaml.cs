@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
@@ -28,6 +29,15 @@ namespace drontaxi.View
 
         private string login;
         private string password;
+        private bool showError;
+
+        public bool ShowError {
+            get { return showError; }
+            set {
+                showError = value;
+                OnPropertyChanged("ShowError");
+            }
+        }
 
         public string Login {
             get { return login; }
@@ -50,7 +60,16 @@ namespace drontaxi.View
                 return entryCommand ??
                   (entryCommand = new RelayCommand(obj => {
                       Password = inputPassword.Password;
-                      Useraccount useraccount = (Useraccount)Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login);
+                      Useraccount useraccount = new Useraccount();
+                      using (drontaxiContext db = new drontaxiContext()) {
+                          try {
+                              useraccount = db.Useraccount.Where(m => m.Email == login).FirstOrDefault();
+                          }
+                          catch (InvalidOperationException ex) {
+                              ShowError = true;
+                          }
+                      }
+                      //Useraccount useraccount = (Useraccount)Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login);
                       if (useraccount != null && useraccount.Email == Login && useraccount.Password == Password) {
                           MainPage mainPage = new MainPage(Login);
                           ProfilePage profilePage = new View.ProfilePage(Login);
