@@ -20,29 +20,52 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Image Source="pack://application:,,,/Images/Logo Dron Taxi-2.png" Margin="5" />
-            <TextBlock Text="DRON TAXI"  FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Right" Margin="0 0 20 0" Padding="0 0 20px 0"
+                    Command="{Binding BackToLoginPage}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="pack://application:,,,/Images/Logo Dron Taxi-2.png" Margin="5" />
+                    <TextBlock Text="DRON TAXI"  FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" >
-            <TextBlock Text="Регистрация" />
-            <TextBlock Text="Фамилия *" />
-            <TextBox Text="{Binding CreatedUseraccount.Lastname}" />
-            <TextBlock Text="Имя *" />
-            <TextBox Text="{Binding CreatedUseraccount.Firstname}" />
-            <TextBlock Text="Отчество *" />
-            <TextBox Text="{Binding CreatedUseraccount.Patronymic}" />
-            <TextBlock Text="Email *" />
-            <TextBox Text="{Binding CreatedUseraccount.Email}" />
-            <TextBlock Text="Пароль *" />
-            <TextBox Text="{Binding CreatedUseraccount.Password}" />
-            <TextBlock Text="Подтвердить пароль *" />
-            <TextBox />
+        <StackPanel Grid.Row="1" Width="350px" Height="530px" Background="#9c2898" >
+            <TextBlock Text="Регистрация" Width="300px" FontSize="14pt" FontWeight="Bold" Foreground="White" Margin="0 30px 0 10px" />
+            <TextBlock Text="Фамилия *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 10">
+                <TextBox Text="{Binding CreatedUseraccount.Lastname}" VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <TextBlock Text="Имя *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 10">
+                <TextBox Text="{Binding CreatedUseraccount.Firstname}" VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <TextBlock Text="Отчество *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 10">
+                <TextBox Text="{Binding CreatedUseraccount.Patronymic}" VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <TextBlock Text="Email *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 10">
+                <TextBox Text="{Binding CreatedUseraccount.Email}" VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <TextBlock Text="Пароль *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 10">
+                <TextBox Text="{Binding CreatedUseraccount.Password}" VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <TextBlock Text="Подтвердить пароль *" Width="300px" Foreground="LightGray" FontSize="9pt" Margin="0 0 0 5px" />
+            <Border BorderThickness="2" CornerRadius="3" BorderBrush="#04a0ff" Height="35px" Width="300px" Margin="0 0 0 20px">
+                <TextBox VerticalContentAlignment="Center" Padding="10 0 0 0" />
+            </Border>
+            <Button Grid.Column="2" Style="{StaticResource RegistrationTabButton}" FontWeight="Bold" Foreground="Black" 
+                    Content="Регистрация" Width="300px" Height="35px" Command="{Binding RegistrationCommand}" />
         </StackPanel>
 
         <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowMassage, 
                     Converter={StaticResource booleanToVisibilityConverter}}">
             <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Пользователь успешно зарегистрирован" />
+        </Border>
+        <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowError, 
+                    Converter={StaticResource booleanToVisibilityConverter}}">
+            <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Пользователь с указанным логином уже существует" />
         </Border>
     </Grid>
 </Page>
