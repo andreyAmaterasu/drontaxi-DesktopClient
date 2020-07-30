@@ -25,6 +25,13 @@ namespace drontaxi.View
         public LoginPage() {
             InitializeComponent();
             DataContext = this;
+
+            using (drontaxiContext db = new drontaxiContext()) {
+                SaveUseraccount saveUseraccount = db.SaveUseraccount.FirstOrDefault();
+                if (saveUseraccount != null) {
+                    Login = saveUseraccount.Email;
+                }
+            }
         }
 
         private string login;
@@ -78,6 +85,19 @@ namespace drontaxi.View
                                   MainPage mainPage = new MainPage(Login);
                                   ProfilePage profilePage = new View.ProfilePage(Login);
                                   MainPage.CurrentPage.Content = profilePage;
+
+                                  if (CheckSave.IsChecked == true) {
+                                      SaveUseraccount saveUseraccount = new SaveUseraccount() { Email = Login };
+                                      db.SaveUseraccount.Add(saveUseraccount);
+                                      db.SaveChanges();
+                                  }
+                                  else {
+                                      SaveUseraccount saveUseraccount = db.SaveUseraccount.FirstOrDefault();
+                                      if (saveUseraccount != null) {
+                                          db.Remove(saveUseraccount);
+                                          db.SaveChanges();
+                                      }
+                                  }
 
                                   NavigationService.Navigate(mainPage);
                               }

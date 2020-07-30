@@ -42,7 +42,8 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" Style="{StaticResource CheckBox}" Height="20px" Width="20px" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <CheckBox x:Name="CheckSave" VerticalAlignment="Center"  />
+
                 <TextBlock Grid.Column="1" Text="Запомнить" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
                 <Button Grid.Column="2" Style="{StaticResource InputTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Content="Войти" Width="150px" Height="35px" Command="{Binding EntryCommand}" />
             </Grid>

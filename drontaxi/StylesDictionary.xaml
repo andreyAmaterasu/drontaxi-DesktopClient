@@ -29,7 +29,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="CheckBox" x:Key="CheckBox">
+    <!--<Style TargetType="CheckBox" x:Key="CheckBox">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
@@ -39,7 +39,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style TargetType="TabItem">
         <Setter Property="Template">
