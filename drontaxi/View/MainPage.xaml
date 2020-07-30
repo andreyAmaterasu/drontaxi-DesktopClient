@@ -25,7 +25,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0" Background="#821d80">
-            <Grid Height="40px" Margin="20px 50px 20px 0" Visibility="{Binding Path=ShowFuction, Converter={StaticResource booleanToVisibilityConverter}}">
+            <Grid Height="40px" Margin="20px 50px 20px 0">
                 <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
                     <DockPanel LastChildFill="True" Width="230px">
                         <Image Source="pack://application:,,,/Images/profile.png" Height="25"/>
@@ -35,7 +35,7 @@
                 </Button>
             </Grid>
 
-            <Grid Height="40px" Margin="20px 10px 20px 0" Visibility="{Binding Path=ShowFuction, Converter={StaticResource booleanToVisibilityConverter}}">
+            <Grid Height="40px" Margin="20px 10px 20px 0" Visibility="{Binding Path=ShowUserControl, Converter={StaticResource booleanToVisibilityConverter}}">
                 <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
                     <DockPanel LastChildFill="True" Width="230px">
                         <Image Source="pack://application:,,,/Images/manag-user.png" Height="25"/>
@@ -45,7 +45,7 @@
                 </Button>
             </Grid>
 
-            <Grid Height="40px" Margin="20px 10px 20px 0" Visibility="{Binding Path=ShowFuction, Converter={StaticResource booleanToVisibilityConverter}}">
+            <Grid Height="40px" Margin="20px 10px 20px 0" Visibility="{Binding Path=ShowRoleControl, Converter={StaticResource booleanToVisibilityConverter}}">
                 <Button Background="Transparent" BorderThickness="0" Style="{StaticResource FlatButtonStyle}">
                     <DockPanel LastChildFill="True" Width="230px">
                         <Image Source="pack://application:,,,/Images/manag-role.png" Height="25"/>

@@ -16,9 +16,25 @@ namespace drontaxi.Database
             return null;
         }
 
-        public static List<RoleForUser> GetRolesForUserWithLogin(string login) {
+        public static List<AvailableRoles> GetRolesForUserWithLogin(string login) {
             using (drontaxiContext db = new drontaxiContext()) {
-                return db.RoleForUser.Where(r => r.Email == login).ToList();
+                List<RoleForUser> roleForUsers = db.RoleForUser.Where(r => r.Email == login).ToList();
+                List<AvailableRoles> availableRoles = new List<AvailableRoles>();
+
+                foreach (RoleForUser roleForUser in roleForUsers) {
+                    if (db.AvailableRoles.Where(a => a.SystemName == roleForUser.Role).FirstOrDefault() != null) {
+                        availableRoles.Add(db.AvailableRoles.Where(a => a.SystemName == roleForUser.Role).FirstOrDefault());
+                    }
+                }
+
+                return availableRoles;
+            }
+        }
+
+        public static AvailableRoles GetFirstRoleWithLogin(string login) {
+            using (drontaxiContext db = new drontaxiContext()) {
+                RoleForUser roleForUser = db.RoleForUser.Where(r => r.Email == login).FirstOrDefault();
+                return db.AvailableRoles.Where(a => a.SystemName == roleForUser.Role).FirstOrDefault(); ;
             }
         }
 
@@ -28,9 +44,9 @@ namespace drontaxi.Database
             }
         }
 
-        public static void RemoveRole(string systemName) {
+        public static void RemoveRole(string role, string login) {
             using (drontaxiContext db = new drontaxiContext()) {
-                RoleForUser roleForUser = db.RoleForUser.Where(r => r.SystemName == systemName).FirstOrDefault();
+                RoleForUser roleForUser = db.RoleForUser.Where(r => r.Role == role && r.Email == login).FirstOrDefault();
                 db.RoleForUser.Remove(roleForUser);
                 db.SaveChanges();
             }

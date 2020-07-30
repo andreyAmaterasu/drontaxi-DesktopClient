@@ -1,7 +1,7 @@
 {
-  "Host": "10.0.0.5",
+  "Host": "10.0.0.3",
   "Port": "5432",
-  "Database": "drontaxi",
+  "Database": "test",
   "Username": "andrey",
   "Password": "1469"
 }

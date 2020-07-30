@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -18,6 +16,7 @@ namespace drontaxi.Models
         }
 
         public virtual DbSet<AdditionalAttribute> AdditionalAttribute { get; set; }
+        public virtual DbSet<AvailableRoles> AvailableRoles { get; set; }
         public virtual DbSet<Maintenance> Maintenance { get; set; }
         public virtual DbSet<Master> Master { get; set; }
         public virtual DbSet<OrderOfUser> OrderOfUser { get; set; }
@@ -36,9 +35,8 @@ namespace drontaxi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var jsonString = File.ReadAllText("databasedata.json");
-                DatabaseConnect databaseConnect = JsonSerializer.Deserialize<DatabaseConnect>(jsonString);
-                optionsBuilder.UseNpgsql($"Host={databaseConnect.Host};Port={databaseConnect.Port};Database={databaseConnect.Database};Username={databaseConnect.Username};Password={databaseConnect.Password}");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseNpgsql("Host=10.0.0.3;Port=5432;Database=test;Username=andrey;Password=1469");
             }
         }
 
@@ -71,6 +69,31 @@ namespace drontaxi.Models
                     .WithMany(p => p.AdditionalAttribute)
                     .HasForeignKey(d => d.Transport)
                     .HasConstraintName("additional_attribute_transport_fkey");
+            });
+
+            modelBuilder.Entity<AvailableRoles>(entity =>
+            {
+                entity.HasKey(e => e.SystemName)
+                    .HasName("available_roles_pkey");
+
+                entity.ToTable("available_roles");
+
+                entity.Property(e => e.SystemName)
+                    .HasColumnName("system_name")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ExpirationDate)
+                    .HasColumnName("expiration_date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.RoleName)
+                    .IsRequired()
+                    .HasColumnName("role_name")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.StartDate)
+                    .HasColumnName("start_date")
+                    .HasColumnType("date");
             });
 
             modelBuilder.Entity<Maintenance>(entity =>
@@ -252,36 +275,28 @@ namespace drontaxi.Models
 
             modelBuilder.Entity<RoleForUser>(entity =>
             {
-                entity.HasKey(e => new { e.SystemName, e.Email })
+                entity.HasKey(e => new { e.Email, e.Role })
                     .HasName("role_for_user_pkey");
 
                 entity.ToTable("role_for_user");
-
-                entity.Property(e => e.SystemName)
-                    .HasColumnName("system_name")
-                    .HasMaxLength(50);
 
                 entity.Property(e => e.Email)
                     .HasColumnName("email")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.ExpirationDate)
-                    .HasColumnName("expiration_date")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.RoleName)
-                    .IsRequired()
-                    .HasColumnName("role_name")
+                entity.Property(e => e.Role)
+                    .HasColumnName("role")
                     .HasMaxLength(50);
-
-                entity.Property(e => e.StartDate)
-                    .HasColumnName("start_date")
-                    .HasColumnType("date");
 
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.RoleForUser)
                     .HasForeignKey(d => d.Email)
                     .HasConstraintName("role_for_user_email_fkey");
+
+                entity.HasOne(d => d.RoleNavigation)
+                    .WithMany(p => p.RoleForUser)
+                    .HasForeignKey(d => d.Role)
+                    .HasConstraintName("role_for_user_role_fkey");
             });
 
             modelBuilder.Entity<SaveUseraccount>(entity =>
@@ -320,6 +335,12 @@ namespace drontaxi.Models
                 entity.Property(e => e.Role)
                     .HasColumnName("role")
                     .HasMaxLength(50);
+
+                entity.HasOne(d => d.RoleNavigation)
+                    .WithMany(p => p.SystemFunction)
+                    .HasForeignKey(d => d.Role)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("system_function_role_fkey");
             });
 
             modelBuilder.Entity<Transport>(entity =>

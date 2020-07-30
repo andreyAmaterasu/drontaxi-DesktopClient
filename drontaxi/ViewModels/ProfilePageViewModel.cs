@@ -14,9 +14,9 @@ namespace drontaxi.ViewModels
 
         private string login;
         private Useraccount useraccount = new Useraccount();
-        private RoleForUser selectedRole = new RoleForUser();
+        private AvailableRoles selectedRole = new AvailableRoles();
         private List<SystemFunction> functionsForRole;
-        private List<RoleForUser> roleForUser;
+        private List<AvailableRoles> roleForUser;
 
         public string Login {
             get { return login; }
@@ -26,12 +26,14 @@ namespace drontaxi.ViewModels
             }
         }
 
-        public RoleForUser SelectedRole {
+        public AvailableRoles SelectedRole {
             get { return selectedRole; }
             set {
                 selectedRole = value;
-                FunctionsForRole = Database.DatabaseManager.GetFunctionsForRole(SelectedRole.SystemName);
                 OnPropertyChanged("SelectedRole");
+                if (SelectedRole != null) {
+                    FunctionsForRole = Database.DatabaseManager.GetFunctionsForRole(SelectedRole.SystemName);
+                }
             }
         }
 
@@ -39,7 +41,7 @@ namespace drontaxi.ViewModels
             get { return Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login); }
         }
 
-        public List<RoleForUser> RoleForUser {
+        public List<AvailableRoles> RoleForUser {
             get { return roleForUser; }
             set {
                 roleForUser = value;
@@ -61,23 +63,23 @@ namespace drontaxi.ViewModels
                 return removeRole ??
                     (removeRole = new RelayCommand(obj => {
                         string systemName = obj.ToString();
-                        Database.DatabaseManager.RemoveRole(systemName);
+                        Database.DatabaseManager.RemoveRole(systemName, Login);
                         RoleForUser = Database.DatabaseManager.GetRolesForUserWithLogin(Login);
                     }));
             }
         }
 
-        private RelayCommand removeFunction;
-        public RelayCommand RemoveFunction {
-            get {
-                return removeFunction ??
-                    (removeFunction = new RelayCommand(obj => {
-                        string systemName = obj.ToString();
-                        Database.DatabaseManager.RemoveFunction(systemName);
-                        FunctionsForRole = Database.DatabaseManager.GetFunctionsForRole(SelectedRole.SystemName);
-                    }));
+        //private RelayCommand removeFunction;
+        //public RelayCommand RemoveFunction {
+        //    get {
+        //        return removeFunction ??
+        //            (removeFunction = new RelayCommand(obj => {
+        //                string systemName = obj.ToString();
+        //                Database.DatabaseManager.RemoveFunction(systemName);
+        //                FunctionsForRole = Database.DatabaseManager.GetFunctionsForRole(SelectedRole.SystemName);
+        //            }));
 
-            }
-        }
+        //    }
+        //}
     }
 }

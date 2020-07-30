@@ -1,5 +1,7 @@
-﻿using System;
+﻿using drontaxi.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace drontaxi.ViewModels
@@ -8,10 +10,27 @@ namespace drontaxi.ViewModels
     {
         public MainPageViewModel(string login) {
             Login = login;
+
+            using (drontaxiContext db = new drontaxiContext()) {
+                if (db.RoleForUser.Where(r => r.Email == Login && r.Role == "manager").FirstOrDefault() != null) {
+                    ShowUserControl = true;
+                }
+                else {
+                    ShowUserControl = false;
+                }
+
+                if (db.RoleForUser.Where(r => r.Email == Login && r.Role == "admin").FirstOrDefault() != null) {
+                    ShowRoleControl = true;
+                }
+                else {
+                    ShowRoleControl = false;
+                }
+            }
         }
 
         private string login;
-        private bool showFunction;
+        private bool showUserControl;
+        private bool showRoleControl;
 
         //private Page currentPage;
         public string Login {
@@ -22,11 +41,19 @@ namespace drontaxi.ViewModels
             }
         }
 
-        public bool ShowFunction {
-            get { return showFunction; }
+        public bool ShowUserControl {
+            get { return showUserControl; }
             set {
-                showFunction = value;
-                OnPropertyChanged("ShowFunction");
+                showUserControl = value;
+                OnPropertyChanged("ShowUserControl");
+            }
+        }
+
+        public bool ShowRoleControl {
+            get { return showRoleControl; }
+            set {
+                showRoleControl = value;
+                OnPropertyChanged("ShowRoleControl");
             }
         }
     }

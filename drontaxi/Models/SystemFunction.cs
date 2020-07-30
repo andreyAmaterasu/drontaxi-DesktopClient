@@ -8,5 +8,7 @@ namespace drontaxi.Models
         public string SystemName { get; set; }
         public string FunctionName { get; set; }
         public string Role { get; set; }
+
+        public virtual AvailableRoles RoleNavigation { get; set; }
     }
 }
