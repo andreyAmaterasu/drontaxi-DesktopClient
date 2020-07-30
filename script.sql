@@ -4,10 +4,10 @@ create table Useraccount (
     lastname varchar(30) not null,
     firstname varchar(30) not null,
     patronymic varchar(30) not null,
-    date_of_birth date not null,
-    gender varchar(20) not null,
+    date_of_birth date,
+    gender varchar(20),
     phone_number varchar(30),
-    photo varchar(150) not null
+    photo varchar(150)
 );
 
 insert into Useraccount values ('test@gmail.com', 'pass', 'Иванов', 'Дмитрий', 'Николаевич', '1990-01-01', 'Мужской', '8 999 548 23 10', 'path');
