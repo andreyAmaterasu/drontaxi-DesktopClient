@@ -49,3 +49,5 @@ Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\MainPage
 Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\MainPage.baml
 Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\ProfilePage.g.cs
 Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\ProfilePage.baml
+Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\RegistrationPage.g.cs
+Z:\Documents\Projects\VS\drontaxi\drontaxi\obj\Debug\netcoreapp3.1\View\RegistrationPage.baml

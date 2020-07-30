@@ -48,7 +48,7 @@
                 <Button Grid.Column="2" Style="{StaticResource InputTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Content="Войти" Width="150px" Height="35px" Command="{Binding EntryCommand}" />
             </Grid>
             <Button Grid.Column="2" Style="{StaticResource RegistrationTabButton}" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Black" 
-                    Content="Регистрация" Width="330px" Height="35px" />
+                    Content="Регистрация" Width="330px" Height="35px" Command="{Binding RegistrationCommand}" />
         </StackPanel>
 
         <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowError, 

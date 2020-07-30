@@ -47,7 +47,6 @@ namespace drontaxi.View
         }
 
         private bool showMassage;
-
         public bool ShowMassage {
             get { return showMassage; }
             set {
@@ -98,7 +97,6 @@ namespace drontaxi.View
                                           db.SaveChanges();
                                       }
                                   }
-
                                   NavigationService.Navigate(mainPage);
                               }
                               else {
@@ -109,8 +107,17 @@ namespace drontaxi.View
                               ShowError = true;
                           }
                       }
-                      //Useraccount useraccount = (Useraccount)Database.DatabaseManager.GetUserWithLogin<Useraccount>(Login);
-                      
+                  }));
+            }
+        }
+
+        private RelayCommand registrationCommand;
+        public RelayCommand RegistrationCommand {
+            get {
+                return registrationCommand ??
+                  (registrationCommand = new RelayCommand(obj => {
+                      RegistrationPage registrationPage = new RegistrationPage();
+                      NavigationService.Navigate(registrationPage);
                   }));
             }
         }
