@@ -27,9 +27,14 @@ namespace drontaxi.View
             DataContext = this;
 
             using (drontaxiContext db = new drontaxiContext()) {
-                SaveUseraccount saveUseraccount = db.SaveUseraccount.FirstOrDefault();
-                if (saveUseraccount != null) {
-                    Login = saveUseraccount.Email;
+                try {
+                    SaveUseraccount saveUseraccount = db.SaveUseraccount.FirstOrDefault();
+                    if (saveUseraccount != null) {
+                        Login = saveUseraccount.Email;
+                    }
+                }
+                catch (InvalidOperationException ex) {
+                    ShowError = true;
                 }
             }
         }
