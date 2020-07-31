@@ -62,6 +62,7 @@
                     Converter={StaticResource booleanToVisibilityConverter}}">
             <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Пользователь успешно зарегистрирован" />
         </Border>
+        
         <Border Grid.Row="2" Background="#9c2898" Height="60" VerticalAlignment="Bottom" Visibility="{Binding Path=ShowError, 
                     Converter={StaticResource booleanToVisibilityConverter}}">
             <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Пользователь с указанным логином уже существует" />
